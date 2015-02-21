@@ -5,40 +5,32 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
     concat: {
       build: {
-        options: {
-          separator: ';',
-        },
-        dist: {
-          src: ['assets/js/*.js'],
-          dest: 'static/js/script.js'
-        },
+        src: ['assets/js/script.js'],
+        dest: 'static/js/script.js',
+        nonull: true,
       },
       lib: {
-        options: {
-          separator: ';',
-        },
-        dist: {
-          src: ['assets/lib/js/*.js'],
-          dest: 'static/js/lib.js'
-        }
+        src: ['assets/lib/js/*.js'],
+        dest: 'static/js/lib.js',
+        nonull: true,
       },
     },
     uglify: {
       build: {
-        src: '<%= concat.build.dist.dest %>',
+        src: '<%= concat.build.dest %>',
         dest: 'static/js/script.min.js'
       },
       lib: {
-        src: '<% concat.lib.dist.dest %>',
+        src: '<%= concat.lib.dest %>',
         dest: 'static/js/lib.min.js'
       }
     },
     clean: {
       build: {
-        src: ['<%= concat.build.dist.dest %>'],
+        src: ['<%= concat.build.dest %>'],
       },
       lib: {
-        src: ['<%= concat.lib.dist.dest %>']
+        src: ['<%= concat.lib.dest %>']
       }
     },
     sass: {
@@ -51,7 +43,7 @@ module.exports = function(grunt) {
     watch: {
       js: {
         files: ['assets/js/*'],
-        tasks: ['concat:build', 'uglify:build', 'clean:build']
+        tasks: ['js']
       },
       scss: {
         files: ['assets/scss/*'],
@@ -67,5 +59,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-sass');
 
-  grunt.registerTask('lib', ['concat:lib', 'clean:lib']);
+  grunt.registerTask('lib', ['concat:lib', 'uglify:lib', 'clean:lib']);
+  grunt.registerTask('js', ['concat:build', 'uglify:build', 'clean:build']);
 };
