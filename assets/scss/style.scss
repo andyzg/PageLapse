@@ -1,3 +1,28 @@
+@import 'reset';
+
+$font-stack: 'Open Sans', sans-serif;
+
+html {
+  height: 100%;
+  width: 100%;
+}
 body {
-  background-color: red;
+  background-color: #EEE;
+  font-family: $font-stack;
+  height: 100%;
+  width: 100%;
+
+  div.container {
+    display: block;
+    width: 900px;
+  }
+
+  div.header {
+    height: 35%;
+  }
+  div.footer {
+    height: 65%;
+    background-color: rgba(188, 43, 42, 0.5);
+
+  }
 }
