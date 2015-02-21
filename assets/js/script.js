@@ -1,17 +1,3 @@
-console.log("lol");
-console.log("lol");
-console.log("lol");
-console.log("lol");
-console.log("lol");
-console.log("lol");
-console.log("lol");
-console.log("lol");
-console.log("lol");
-console.log("lol");
-console.log("lol");
-console.log("lol");
-console.log("lol");
-console.log("lol");
-console.log("lol");
-console.log("lol");
-
+$(function() {
+  var s = skrollr.init();
+});

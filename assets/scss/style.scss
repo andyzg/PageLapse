@@ -11,8 +11,8 @@ $heart-height: 20px;
 
 body {
   background-color: #F0F0F0;
-  border-top: 2px solid $main-color;
   font-family: $font-stack;
+  height: 2000px;
 
   div.container {
     display: block;
@@ -22,6 +22,10 @@ body {
   }
 
   div.header {
+    border-top: 2px solid $main-color;
+    position: fixed;
+    top: 0;
+    width: 100%;
     div.logo {
       margin: 70px auto 0 auto;
       width: $logo-width;
@@ -30,7 +34,7 @@ body {
       }
     }
     div.description {
-      display: block;
+      /** @400 display: block; **/
       font-weight: 300;
       font-size: 26px;
       margin-top: 50px;
@@ -44,6 +48,7 @@ body {
     }
 
     div.description.smaller {
+      /** @600 display: block; **/
       font-size: 20px;
       margin-top: 20px;
     }
@@ -93,7 +98,7 @@ body {
   div.footer {
     background-color: rgba(188, 43, 42, 0.5);
     bottom: 0;
-    position: absolute;
+    position: fixed;
     width: 100%;
     div.how {
       color: #eee;

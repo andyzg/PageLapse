@@ -37,40 +37,46 @@ table {
 
 body {
   background-color: #F0F0F0;
-  border-top: 2px solid #bc2b2a;
-  font-family: "Open Sans", sans-serif; }
+  font-family: "Open Sans", sans-serif;
+  height: 2000px; }
   body div.container {
     display: block;
     margin: 0 auto 0 auto;
     text-align: center;
     width: 900px; }
-  body div.header div.logo {
-    margin: 70px auto 0 auto;
-    width: 100px; }
-    body div.header div.logo img {
+  body div.header {
+    border-top: 2px solid #bc2b2a;
+    position: fixed;
+    top: 0;
+    width: 100%; }
+    body div.header div.logo {
+      margin: 70px auto 0 auto;
       width: 100px; }
-  body div.header div.description {
-    display: block;
-    font-weight: 300;
-    font-size: 26px;
-    margin-top: 50px;
-    margin: 50px auto 0 auto;
-    text-align: center;
-    width: 600px; }
-    body div.header div.description span.highlight {
-      color: #bc2b2a;
-      font-weight: 400; }
-  body div.header div.description.smaller {
-    font-size: 20px;
-    margin-top: 20px; }
-  body div.header img.mchacks {
-    height: 36px;
-    position: relative;
-    top: 6px; }
-  body div.header img.heart {
-    height: 20px;
-    position: relative;
-    top: 3px; }
+      body div.header div.logo img {
+        width: 100px; }
+    body div.header div.description {
+      /** @400 display: block; **/
+      font-weight: 300;
+      font-size: 26px;
+      margin-top: 50px;
+      margin: 50px auto 0 auto;
+      text-align: center;
+      width: 600px; }
+      body div.header div.description span.highlight {
+        color: #bc2b2a;
+        font-weight: 400; }
+    body div.header div.description.smaller {
+      /** @600 display: block; **/
+      font-size: 20px;
+      margin-top: 20px; }
+    body div.header img.mchacks {
+      height: 36px;
+      position: relative;
+      top: 6px; }
+    body div.header img.heart {
+      height: 20px;
+      position: relative;
+      top: 3px; }
   @media screen and (max-height: 600px) {
     body div.footer {
       height: 150px; } }
@@ -89,7 +95,7 @@ body {
   body div.footer {
     background-color: rgba(188, 43, 42, 0.5);
     bottom: 0;
-    position: absolute;
+    position: fixed;
     width: 100%; }
     body div.footer div.how {
       color: #eee;

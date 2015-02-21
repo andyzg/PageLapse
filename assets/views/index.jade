@@ -13,25 +13,25 @@ html
       div.container
         div.logo
           img(src='/static/img/logo.png')
-        div.description
+        div.description(data-250="opacity: 0", data-500="opacity: 1")
           | Visualize a time lapse of your Github web page #[span.highlight evolving]
-        div.description.smaller
+        div.description.smaller(data-750="opacity: 0", data-1000="opacity: 1")
           | Made with #[img.heart(src="static/img/heart.png")] at McHacks #[img.mchacks(src="static/img/mchacks_logo.png")]
-    div.footer
+    div.footer(data-1250="opacity: 0" data-1500="opacity: 1")
       div.container
-        div.how
+        div.how(data-1750="opacity: 0" data-2000="opacity: 1")
           h1
             | How it works
           | On our server, we clone a copy of your repo. After scraping the commit history, we
           | set the repo state to each commit. We take a screenshot at each stage and then merge
           | the images and serve you the result.
 
-      div.interested
+      div.interested(data-2250="opacity: 0" data-2500="opacity: 1")
         span.try
           | Think this is cool? #[span.underline Try it out!]
         br
         input(placeholder="Your Github username")
 
-      div.start
+      div.start(data-2750="opacity: 0" data-3000="opacity: 1")
         div.text
           | START
