@@ -1,4 +1,5 @@
 set -e
 
-bundle exec sass --watch assets/scss:static/css &
+grunt lib
+grunt watch &
 python app.py
