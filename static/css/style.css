@@ -113,7 +113,7 @@ body {
     body div.footer div.interested {
       color: #eee;
       display: block;
-      background-color: #555;
+      background-color: #555555;
       border-radius: 3px;
       margin: 75px auto 0 auto;
       padding: 10px;
@@ -127,7 +127,7 @@ body {
         width: 196px; }
     body div.footer div.start {
       display: block;
-      background-color: #555;
+      background-color: #555555;
       border-radius: 3px;
       color: #eee;
       height: 37px;
@@ -139,5 +139,3 @@ body {
         border-radius: 3px;
         height: 18px;
         padding: 8px; }
-
-/*# sourceMappingURL=style.css.map */
