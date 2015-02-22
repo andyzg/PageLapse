@@ -3,9 +3,12 @@ function handleRequest(data) {
   var screenHeight = $(window).height();
   $("div.hero").animate({
     bottom: screenHeight + "px"
-  }, 500);
+  }, 500, 'swing');
   $("body").css({
     height: screenHeight + "px",
+  });
+  $("div.footer").css({
+    height: "-1000px"
   });
 }
 
@@ -13,8 +16,6 @@ $(function() {
   var s = skrollr.init();
 
   $("div.text").click(function(e) {
-    console.log("CLICKED");
-    console.log(e);
     var url = $("input[name=url]").val();
     $.get("/query", { url: url })
       .done(handleRequest);
