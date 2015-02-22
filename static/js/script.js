@@ -13,9 +13,7 @@ function createCommit(commit) {
   var url = $("<a href='" + commit.url + "'><span class='commit-url'>See on Github</span></a>");
   var li = $("<li></li>");
   $(li).append(message);
-  $(li).append($("<br />"));
   $(li).append(hash);
-  $(li).append($("<br />"));
   $(li).append(url);
   return li;
 }
