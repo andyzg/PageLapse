@@ -121,9 +121,6 @@ def test_disconnect():
 
 def enqueue_output(out, queue):
     for line in iter(out.readline, b''):
-        print line, "LINE"
-        if len(line) == 0:
-            break
         queue.put(line)
     out.close()
 
@@ -139,8 +136,7 @@ def fetch_gif(repo):
     # parse output
     while True:
         # read line without blocking
-        try:  #line = q.get_nowait() # or q.get(timeout=.1)
-            line = q.get(timeout=.1)
+        try:  line = q.get_nowait() # or q.get(timeout=.1)
         except Empty:
             continue
         else: # got line
