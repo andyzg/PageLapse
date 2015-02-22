@@ -23,7 +23,6 @@ def get_gif():
     return Response(status=200)
 
 
-
 #======Fan's socket routes======
 app.config['SECRET_KEY'] = 'secret!'
 socketio = SocketIO(app)

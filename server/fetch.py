@@ -12,6 +12,7 @@ import time
 import subprocess
 import signal
 import generator
+from flask.ext.socketio import SocketIO, emit
 
 ON_POSIX = 'posix' in sys.builtin_module_names
 
@@ -73,15 +74,15 @@ def fetch(repo_url):
     # print len(commit_list)
 
     # filter changed files
-    # critical_changes = ('config.yml', '.html', '.js', '.scss', '.css', '.php', '.svg', '.png', '.gif', '.jpg', '.jpeg', '.jade')
-    # filtered_commit_list = []
-    # for i in range(1, len(commit_list)-1):
-    #     changed_files = []
-    #     changes = git.diff(commit_list[i-1], commit_list[i], '--name-only').split('\n')
-    #     for change in changes:
-    #         if change.endswith(critical_changes):
-    #             filtered_commit_list.append(commit_list[i])
-    #             break
+    critical_changes = ('config.yml', '.html', '.js', '.scss', '.css', '.php', '.svg', '.png', '.gif', '.jpg', '.jpeg', '.jade')
+    filtered_commit_list = []
+    for i in range(1, len(commit_list)-1):
+        changed_files = []
+        changes = git.diff(commit_list[i-1], commit_list[i], '--name-only').split('\n')
+        for change in changes:
+            if change.endswith(critical_changes):
+                filtered_commit_list.append(commit_list[i])
+                break
 
     chunked_commit_list = list(chunks(commit_list, commit_per_thread))
     numThreads = len(chunked_commit_list)
@@ -160,7 +161,7 @@ def phantom(host_address, repo_path, commit_list, index, repo_name, pid):
 
 if __name__ == '__main__':
 
-    fetch('https://github.com/erjjones/erjjones.github.com')
+    fetch('https://github.com/markprokoudine/mchacks')
 
 
 
