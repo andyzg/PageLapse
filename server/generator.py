@@ -4,7 +4,7 @@ from moviepy.editor import *
 from PIL import Image
 
 def padImage(targetDirectory):
-	file_list=glob.glob(targetDirectory+'*.png')
+	file_list=glob.glob(targetDirectory+'/*.png')
 
 	for FNAME in file_list:
 		with open(str(FNAME), 'rb') as FILE:
@@ -16,6 +16,7 @@ def padImage(targetDirectory):
 			background.paste(top,(0,0))
 			background.save(FNAME)
 			FILE.close()
+	
 
 #makes a timelapse from the files within the provided directory 
 #@targetDirectory: absloute path of the the directory
@@ -23,14 +24,15 @@ def padImage(targetDirectory):
 def exportToTimelapse(targetDirectory, output):
 
 	padImage(targetDirectory)
+	
 
 	file_list=glob.glob(targetDirectory + '/*.png')
 	file_list.sort()
 
 	clip=ImageSequenceClip(file_list,fps=12)
-	#clip_resized=clip.resize((300,750))
+
 	clip.write_videofile(output,threads=32,preset="fast",fps=12)
-	#clip.write_gif("export.gif")
+
 
 	return os.path.dirname(output)
 
