@@ -36,110 +36,122 @@ table {
   border-spacing: 0; }
 
 body {
-  background-color: #F0F0F0;
   font-family: "Open Sans", sans-serif;
   height: 2000px; }
-  body div.container {
-    display: block;
-    margin: 0 auto 0 auto;
-    text-align: center;
-    width: 900px; }
-  body div.header {
-    border-top: 2px solid #bc2b2a;
+  body div.hero {
+    background-color: #EEE;
+    height: 100%;
     position: fixed;
-    top: 0;
-    width: 100%; }
-    body div.header div.logo {
-      margin: 70px auto 0 auto;
-      width: 100px; }
-      body div.header div.logo img {
+    width: 100%;
+    z-index: 999999; }
+    body div.hero div.container {
+      display: block;
+      margin: 0 auto 0 auto;
+      text-align: center;
+      width: 900px; }
+    body div.hero div.header {
+      border-top: 2px solid #bc2b2a;
+      height: 600px;
+      position: absolute;
+      top: 0;
+      width: 100%; }
+      body div.hero div.header div.logo {
+        margin: 70px auto 0 auto;
         width: 100px; }
-    body div.header div.description {
-      /** @400 display: block; **/
-      font-weight: 300;
-      font-size: 26px;
-      margin-top: 50px;
-      margin: 50px auto 0 auto;
-      text-align: center;
-      width: 600px; }
-      body div.header div.description span.highlight {
-        color: #bc2b2a;
-        font-weight: 400; }
-    body div.header div.description.smaller {
-      /** @600 display: block; **/
-      font-size: 20px;
-      margin-top: 20px; }
-    body div.header img.mchacks {
-      height: 36px;
-      position: relative;
-      top: 6px; }
-    body div.header img.heart {
-      height: 20px;
-      position: relative;
-      top: 3px; }
-  @media screen and (max-height: 600px) {
-    body div.footer {
-      height: 150px; } }
-  @media screen and (min-height: 600px) {
-    body div.footer {
-      height: 390px; } }
-  @media screen and (min-height: 1024px) {
-    body div.footer {
-      height: 665px; } }
-  @media screen and (min-height: 1440px) {
-    body div.footer {
-      height: 936px; } }
-  @media screen and (min-height: 1920px) {
-    body div.footer {
-      height: 1248px; } }
-  body div.footer {
-    background-color: rgba(188, 43, 42, 0.5);
-    bottom: 0;
-    position: fixed;
-    width: 100%; }
-    body div.footer div.how {
-      color: #eee;
-      font-size: 18px;
-      font-weight: 300;
-      margin: 50px auto 0 auto;
-      width: 450px; }
-      body div.footer div.how h1 {
-        border-bottom: 1px solid #bc2b2a;
+        body div.hero div.header div.logo img {
+          width: 100px; }
+      body div.hero div.header div.description {
+        /** @400 display: block; **/
+        font-weight: 300;
+        font-size: 26px;
+        margin-top: 50px;
+        margin: 50px auto 0 auto;
+        text-align: center;
+        width: 600px; }
+        body div.hero div.header div.description span.highlight {
+          color: #bc2b2a;
+          font-weight: 400; }
+      body div.hero div.header div.description.smaller {
+        /** @600 display: block; **/
+        font-size: 20px;
+        margin-top: 20px; }
+      body div.hero div.header img.mchacks {
+        height: 36px;
+        position: relative;
+        top: 6px; }
+      body div.hero div.header img.heart {
+        height: 20px;
+        position: relative;
+        top: 3px; }
+    @media screen and (max-height: 600px) {
+      body div.hero div.footer {
+        height: 150px; } }
+    @media screen and (min-height: 600px) {
+      body div.hero div.footer {
+        height: 390px; } }
+    @media screen and (min-height: 1024px) {
+      body div.hero div.footer {
+        height: 665px; } }
+    @media screen and (min-height: 1440px) {
+      body div.hero div.footer {
+        height: 936px; } }
+    @media screen and (min-height: 1920px) {
+      body div.hero div.footer {
+        height: 1248px; } }
+    body div.hero div.footer {
+      background-color: rgba(188, 43, 42, 0.5);
+      top: 392px;
+      position: absolute;
+      width: 100%; }
+      body div.hero div.footer div.how {
+        color: #eee;
+        font-size: 16px;
+        font-weight: 300;
+        margin: 50px auto 0 auto;
+        width: 450px; }
+        body div.hero div.footer div.how h1 {
+          border-bottom: 1px solid #bc2b2a;
+          display: block;
+          font-size: 24px;
+          font-weight: 400;
+          margin: 0 auto 5px auto;
+          width: 150px; }
+      body div.hero div.footer div.interested {
+        color: #eee;
         display: block;
-        font-size: 24px;
-        font-weight: 400;
-        margin: 0 auto 5px auto;
-        width: 150px; }
-    body div.footer div.interested {
-      color: #eee;
-      display: block;
-      background-color: #555555;
-      border-radius: 3px;
-      margin: 75px auto 0 auto;
-      padding: 10px;
-      text-align: center;
-      width: 250px; }
-      body div.footer div.interested input {
-        border-radius: 2px;
-        border: 1px solid #ccc;
-        margin: 8px 2px 0;
-        padding: 3px;
-        width: 196px; }
-    body div.footer div.start {
-      display: block;
-      background-color: #555555;
-      border-radius: 3px;
-      color: #eee;
-      height: 37px;
-      margin: 20px auto 0 auto;
-      text-align: center;
-      width: 150px; }
-      body div.footer div.start div.text {
-        background-color: #bc2b2a;
+        background-color: #555;
+        border-radius: 3px;
+        margin: 75px auto 0 auto;
+        padding: 10px;
+        text-align: center;
+        width: 250px; }
+        body div.hero div.footer div.interested input {
+          border-radius: 2px;
+          border: 1px solid #ccc;
+          margin: 8px 2px 0;
+          padding: 3px;
+          width: 196px; }
+      body div.hero div.footer div.start {
+        display: block;
+        background-color: #555;
         border-radius: 3px;
         color: #eee;
-        cursor: pointer;
-        font-weight: 300;
-        font-size: 18px;
-        height: 18px;
-        padding: 8px; }
+        height: 37px;
+        margin: 20px auto 0 auto;
+        text-align: center;
+        width: 150px; }
+        body div.hero div.footer div.start div.text {
+          background-color: #bc2b2a;
+          border-radius: 3px;
+          color: #eee;
+          font-weight: 300;
+          font-size: 18px;
+          height: 18px;
+          padding: 8px; }
+  body div.test {
+    background-color: rgba(188, 43, 42, 0.5);
+    height: 100%;
+    position: fixed;
+    width: 100%; }
+
+/*# sourceMappingURL=style.css.map */

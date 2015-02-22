@@ -59,6 +59,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-sass');
 
-  grunt.registerTask('lib', ['concat:lib', 'uglify:lib', 'clean:lib']);
-  grunt.registerTask('js', ['concat:build', 'uglify:build', 'clean:build']);
+  // grunt.registerTask('lib', ['concat:lib', 'uglify:lib', 'clean:lib']);
+  grunt.registerTask('lib', ['concat:lib']);
+
+
+  // grunt.registerTask('js', ['concat:build', 'uglify:build', 'clean:build']);
+  grunt.registerTask('js', ['concat:build']);
 };

@@ -10,151 +10,164 @@ $mchacks-logo-height: 36px;
 $heart-height: 20px;
 
 body {
-  background-color: #F0F0F0;
   font-family: $font-stack;
   height: 2000px;
 
-  div.container {
-    display: block;
-    margin: 0 auto 0 auto;
-    text-align: center;
-    width: 900px;
-  }
-
-  div.header {
-    border-top: 2px solid $main-color;
+  div.hero {
+    background-color: #EEE;
+    height: 100%;
     position: fixed;
-    top: 0;
     width: 100%;
-    div.logo {
-      margin: 70px auto 0 auto;
-      width: $logo-width;
-      img {
+    z-index: 999999;
+    div.container {
+      display: block;
+      margin: 0 auto 0 auto;
+      text-align: center;
+      width: 900px;
+    }
+
+    div.header {
+      border-top: 2px solid $main-color;
+      height: 600px;
+      position: absolute;
+      top: 0;
+      width: 100%;
+      div.logo {
+        margin: 70px auto 0 auto;
         width: $logo-width;
+        img {
+          width: $logo-width;
+        }
+      }
+      div.description {
+        /** @400 display: block; **/
+        font-weight: 300;
+        font-size: 26px;
+        margin-top: 50px;
+        margin: 50px auto 0 auto;
+        text-align: center;
+        width: 600px;
+        span.highlight {
+          color: $main-color;
+          font-weight: 400;
+        }
+      }
+
+      div.description.smaller {
+        /** @600 display: block; **/
+        font-size: 20px;
+        margin-top: 20px;
+      }
+
+      img.mchacks {
+        height: $mchacks-logo-height;
+        position: relative;
+        top: 6px;
+      }
+      img.heart {
+        height: $heart-height;
+        position: relative;
+        top: 3px;
       }
     }
-    div.description {
-      /** @400 display: block; **/
-      font-weight: 300;
-      font-size: 26px;
-      margin-top: 50px;
-      margin: 50px auto 0 auto;
-      text-align: center;
-      width: 600px;
-      span.highlight {
-        color: $main-color;
-        font-weight: 400;
+
+    @media screen and (max-height: 600px) {
+      div.footer {
+        height: 150px;
       }
     }
 
-    div.description.smaller {
-      /** @600 display: block; **/
-      font-size: 20px;
-      margin-top: 20px;
+    @media screen and (min-height: 600px) {
+      div.footer {
+        height: 390px;
+      }
     }
 
-    img.mchacks {
-      height: $mchacks-logo-height;
-      position: relative;
-      top: 6px;
+    @media screen and (min-height: 1024px) {
+      div.footer {
+        height: 665px;
+      }
     }
-    img.heart {
-      height: $heart-height;
-      position: relative;
-      top: 3px;
-    }
-  }
 
-  @media screen and (max-height: 600px) {
+    @media screen and (min-height: 1440px) {
+      div.footer {
+        height: 936px;
+      }
+    }
+
+    @media screen and (min-height: 1920px) {
+      div.footer {
+        height: 1248px;
+      }
+    }
+
     div.footer {
-      height: 150px;
-    }
-  }
+      background-color: rgba(188, 43, 42, 0.5);
+      top: 392px;
+      position: absolute;
+      width: 100%;
+      div.how {
+        color: #eee;
+        font-size: 16px;
+        font-weight: 300;
+        margin: 50px auto 0 auto;
+        width: 450px;
+        h1 {
+          border-bottom: 1px solid $main-color;
+          display: block;
+          font-size: 24px;
+          font-weight: 400;
+          margin: 0 auto 5px auto;
+          width: 150px;
+        }
+      }
 
-  @media screen and (min-height: 600px) {
-    div.footer {
-      height: 390px;
-    }
-  }
-
-  @media screen and (min-height: 1024px) {
-    div.footer {
-      height: 665px;
-    }
-  }
-
-  @media screen and (min-height: 1440px) {
-    div.footer {
-      height: 936px;
-    }
-  }
-
-  @media screen and (min-height: 1920px) {
-    div.footer {
-      height: 1248px;
-    }
-  }
-
-  div.footer {
-    background-color: rgba(188, 43, 42, 0.5);
-    bottom: 0;
-    position: fixed;
-    width: 100%;
-    div.how {
-      color: #eee;
-      font-size: 18px;
-      font-weight: 300;
-      margin: 50px auto 0 auto;
-      width: 450px;
-      h1 {
-        border-bottom: 1px solid $main-color;
+      div.interested {
+        color: #eee;
         display: block;
-        font-size: 24px;
-        font-weight: 400;
-        margin: 0 auto 5px auto;
-        width: 150px;
+        background-color: $dark-color;
+        border-radius: 3px;
+        margin: 75px auto 0 auto;
+        padding: 10px;
+        text-align: center;
+        width: 250px;
+        span.try {
+        }
+        input {
+          border-radius: 2px;
+          border: 1px solid #ccc;
+          margin: 8px 2px 0;
+          padding: 3px;
+          width: 196px;
+        }
       }
-    }
 
-    div.interested {
-      color: #eee;
-      display: block;
-      background-color: $dark-color;
-      border-radius: 3px;
-      margin: 75px auto 0 auto;
-      padding: 10px;
-      text-align: center;
-      width: 250px;
-      span.try {
-      }
-      input {
-        border-radius: 2px;
-        border: 1px solid #ccc;
-        margin: 8px 2px 0;
-        padding: 3px;
-        width: 196px;
-      }
-    }
-
-    div.start {
-      display: block;
-      background-color: $dark-color;
-      border-radius: 3px;
-      color: #eee;
-      height: 37px;
-      margin: 20px auto 0 auto;
-      text-align: center;
-      width: 150px;
-      div.text {
-        background-color: $main-color;
+      div.start {
+        display: block;
+        background-color: $dark-color;
         border-radius: 3px;
         color: #eee;
-        cursor: pointer;
-        font-weight: 300;
-        font-size: 18px;
-        height: 18px;
-        padding: 8px;
+        height: 37px;
+        margin: 20px auto 0 auto;
+        text-align: center;
+        width: 150px;
+        div.text {
+          background-color: $main-color;
+          border-radius: 3px;
+          color: #eee;
+          font-weight: 300;
+          font-size: 18px;
+          height: 18px;
+          padding: 8px;
+        }
       }
     }
+  }
+
+  div.test {
+    background-color: $second-color;
+    height: 100%;
+    position: fixed;
+    width: 100%;
   }
 }
