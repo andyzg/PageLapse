@@ -12,8 +12,10 @@ def get_root():
 
 @app.route('/query')
 def get_gif():
-    request.args.get('url')
-    return Response(status=200)
+    url = request.args.get('url')
+    history = [1, 2, 3, 4, 5];
+    return jsonify(url=url, commitHistory=history)
+    # return Response(status=300)
 
 if __name__ == '__main__':
     app.run(debug=True)
