@@ -105,6 +105,7 @@ def fetch(repo_url):
     generator.exportToTimelapse(screen_path, repo_name + ".mp4")
     to_print = "gif"
     to_print += " " + repo_name + ".mp4"
+    print to_print
 
 def spawn_server_thread(port, repo_path, host_path, repo_name):
 

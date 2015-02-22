@@ -153,7 +153,12 @@ def fetch_gif(repo):
                         "img": pic_path
                     }, namespace="/test")
                 print commit_id, pic_path, repo
-                gevent.sleep(2)
+                gevent.sleep(0.5)
+            elif parsed[0] == "gif":
+                gif_path = parsed[1]
+                socketio.emit("gif", {
+                         "gif_path": gif_path
+                    }, namespace="/test")
 
 if __name__ == '__main__':
     socketio.run(app,'0.0.0.0')

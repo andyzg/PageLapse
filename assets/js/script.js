@@ -18,6 +18,9 @@ function createCommit(commit) {
   $(li).append($("<br />"));
   $(li).append(url);
 
+  var img = $("<img src='/static/screenshots/" + commit.img + "' />");
+  $("div.column div.container").html(img);
+
   $(li).click(function() {
     var img = $("<img src='/static/screenshots/" + commit.img + "' />");
     $("div.column div.container").html(img);
@@ -45,6 +48,11 @@ function initializeDashboard() {
   socket.on('done', function(){
       $(".gif").append("<img src=\"../static/my_gif.GIF\">");
       $(".gif").addClass("browser-mockup");
+  });
+
+  socket.on('gif', function(msg) {
+    var path = msg.url_path;
+    alert(path);
   });
 }
 
