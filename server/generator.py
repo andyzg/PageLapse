@@ -25,15 +25,11 @@ def exportToTimelapse(targetDirectory, output):
 
 	padImage(targetDirectory)
 
-
 	file_list=glob.glob(targetDirectory + '/*.png')
 	file_list.sort()
-
+	
 	clip=ImageSequenceClip(file_list,fps=12)
-
-	clip.write_videofile(output,threads=32,preset="fast",fps=12)
+	clip.write_videofile(output,threads=4,preset="fast",fps=12)
 
 
 	return os.path.dirname(output)
-
-
