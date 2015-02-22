@@ -7,6 +7,12 @@ from time import sleep
 from threading import Thread, Event
 from random import random
 
+from backend import fetch
+from subprocess import PIPE, Popen
+from threading  import Thread
+import sys
+from Queue import Queue, Empty
+ON_POSIX = 'posix' in sys.builtin_module_names
 
 app = Flask(__name__, static_folder='static', template_folder='assets/views')
 app.jinja_env.add_extension('pyjade.ext.jinja.PyJadeExtension')
@@ -21,7 +27,6 @@ def get_root():
 def get_gif():
     request.args.get('url')
     return Response(status=200)
-
 
 #======Fan's socket routes======
 app.config['SECRET_KEY'] = 'secret!'
@@ -90,6 +95,10 @@ def test_connect():
         print("finito")
         emit('done', {'data': 'finito'})
 
+@socketio.on('commit')
+def handle_message(commit):
+    print('received message: ' + commit)
+
     # emit('my response', {'data': 'Connected'},)
     # makegif()
     # print "connect"
@@ -107,6 +116,31 @@ def test_connect():
 @socketio.on('disconnect', namespace='/test')
 def test_disconnect():
     print('Client disconnected')
+
+def enqueue_output(out, queue):
+    for line in iter(out.readline, b''):
+        queue.put(line)
+    out.close()
+
+def fetch_gif(repo):
+
+    # spawn child thread and serve 
+    p = Popen(['python', 'backend/fetch.py', repo] , stdout=PIPE, stderr=PIPE, bufsize=1, close_fds=ON_POSIX)
+    q = Queue()
+    t = Thread(target=enqueue_output, args=(p.stdout, q))
+    t.daemon = True # thread dies with the program
+    t.start()
+
+    # parse output
+    while True:
+        # read line without blocking
+        try:  line = q.get_nowait() # or q.get(timeout=.1)
+        except Empty:
+            continue
+        else: # got line
+            print line
+
+fetch_gif('https://github.com/markprokoudine/mchacks')
 
 
 

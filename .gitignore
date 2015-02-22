@@ -123,7 +123,8 @@ target/
 tmp/
 tmp_host/
 env/
-screenshots/
 ghostdriver.log
 _site
 *.mp4
+*.png
+*.jpg

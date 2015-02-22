@@ -12,17 +12,15 @@ import time
 import subprocess
 import signal
 import generator
-from flask.ext.socketio import SocketIO, emit
 
 ON_POSIX = 'posix' in sys.builtin_module_names
 
-tmp_dir = 'tmp/'
-host_dir = 'tmp_host/'
-screen_dir = 'screenshots/'
+tmp_dir = 'backend/tmp/'
+host_dir = 'backend/tmp_host/'
+screen_dir = 'assets/screenshots/'
 commit_per_thread = 20
 
 def enqueue_output(out, queue):
-
     for line in iter(out.readline, b''):
         queue.put(line)
     out.close()
@@ -99,12 +97,14 @@ def fetch(repo_url):
         sub_host_path = host_path + str(x)
         copy(repo_path, sub_repo_path)
         host_address, pid = spawn_server_thread(port, sub_repo_path, sub_host_path, repo_name)
-        phantom_process_list.append(spawn_phantom_process(host_address, sub_repo_path, sub_chunk, start_index, repo_name, pid))
+        phantom_process_list.append(spawn_phantom_process(host_address, sub_repo_path, sub_chunk, start_index, repo_name, pid, repo_url))
 
     for t in phantom_process_list:
         t.join()
 
-    generator.exportToTimelapse(screen_path, repo_name+'.mp4')
+    generator.exportToTimelapse(screen_path, repo_name + ".mp4")
+    to_print = "gif"
+    to_print += " " + repo_name + ".mp4"
 
 def spawn_server_thread(port, repo_path, host_path, repo_name):
 
@@ -125,19 +125,18 @@ def spawn_server_thread(port, repo_path, host_path, repo_name):
             continue
         else: # got line
             if "Server running" in line:
-                print "Server running " + repo_name + " on " + host_address
-                print p.pid
+                print "Server running " + repo_name + " " + str(p.pid) + " on " + host_address
                 return host_address, p.pid
 
-def spawn_phantom_process(host_address, repo_path, commit_list, index, repo_name, pid):
+def spawn_phantom_process(host_address, repo_path, commit_list, index, repo_name, pid, repo_url):
     # spawn child thread and serve 
-    t = Process(target=phantom, args=(host_address, repo_path, commit_list, index, repo_name, pid))
+    t = Process(target=phantom, args=(host_address, repo_path, commit_list, index, repo_name, pid, repo_url))
     t.daemon = True # thread dies with the program
     t.start()
 
     return t
 
-def phantom(host_address, repo_path, commit_list, index, repo_name, pid):
+def phantom(host_address, repo_path, commit_list, index, repo_name, pid, repo_url):
 
     repo = Repo(repo_path)
     git = repo.git
@@ -147,11 +146,14 @@ def phantom(host_address, repo_path, commit_list, index, repo_name, pid):
     driver.set_window_size(1440, 4000) # optional
 
     while commit_list != []:
-        print 'printing ' + str(commit_list[0])
+        to_print = "commit "
+        to_print += str(commit_list[0])
+        to_print += " " + repo_name + '/' + str(index).zfill(3) + '.jpg'
+        to_print += " " + repo_url
+        to_print += " " + commit_list[0].message
+        print to_print
         git.checkout(commit_list.pop(0))
-        print commit.message
-        print commit.author
-        os.system("phantomjs phantom_screen.js " + host_address + " " + screen_dir + '/' + repo_name + '/' + str(index).zfill(3) + '.png')
+        os.system("phantomjs phantom_screen.js " + host_address + " " + screen_dir + '/' + repo_name + '/' + str(index).zfill(3) + '.jpg')
         index += 1
 
     driver.quit()
@@ -159,8 +161,10 @@ def phantom(host_address, repo_path, commit_list, index, repo_name, pid):
     os.kill(pid, signal.SIGQUIT)
 
 if __name__ == '__main__':
-
-    fetch('https://github.com/markprokoudine/mchacks')
+    if len(sys.argv) < 2:
+        fetch('https://github.com/markprokoudine/mchacks')
+    else:
+        fetch(sys.argv[1])
 
 
 
