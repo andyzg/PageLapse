@@ -47,31 +47,32 @@ def fetch(repo_url):
 
     # setup paths
     repo_name = repo_url.split('/')[-1]
+    print repo_name
     repo_path = tmp_dir + repo_name
     host_path = host_dir + repo_name
     screen_path = screen_dir + repo_name
 
-    # # clone repo
-    # if os.path.exists(repo_path):
-    #     shutil.rmtree(repo_path)
-    # repo = Repo.clone_from(repo_url, repo_path)
+    # clone repo
+    if os.path.exists(repo_path):
+        shutil.rmtree(repo_path)
+    repo = Repo.clone_from(repo_url, repo_path)
 
-    # repo = Repo(repo_path)
-    # git = repo.git
+    repo = Repo(repo_path)
+    git = repo.git
 
-    # # create screenshot dir
-    # if not os.path.exists(screen_dir+repo_name):
-    #     os.mkdir(screen_dir+repo_name)
+    # create screenshot dir
+    if not os.path.exists(screen_dir+repo_name):
+        os.mkdir(screen_dir+repo_name)
 
-    # # fetch all commits
-    # commit_list = []
-    # for commit in repo.iter_commits('master', max_count=2000):
-    #     commit_list.append(commit)
-    # commit_list.reverse()
+    # fetch all commits
+    commit_list = []
+    for commit in repo.iter_commits('master', max_count=2000):
+        commit_list.append(commit)
+    commit_list.reverse()
 
-    # # print len(commit_list)
+    # print len(commit_list)
 
-    # # filter changed files
+    # filter changed files
     # critical_changes = ('config.yml', '.html', '.js', '.scss', '.css', '.php', '.svg', '.png', '.gif', '.jpg', '.jpeg', '.jade')
     # filtered_commit_list = []
     # for i in range(1, len(commit_list)-1):
@@ -82,25 +83,25 @@ def fetch(repo_url):
     #             filtered_commit_list.append(commit_list[i])
     #             break
 
-    # chunked_commit_list = list(chunks(filtered_commit_list, commit_per_thread))
-    # numThreads = len(chunked_commit_list)
+    chunked_commit_list = list(chunks(commit_list, commit_per_thread))
+    numThreads = len(chunked_commit_list)
 
-    # # list servers
-    # phantom_process_list = []
+    # list servers
+    phantom_process_list = []
 
-    # # spawn server threads
-    # for x in range(numThreads):
-    #     port = 4000 + x
-    #     sub_chunk = chunked_commit_list[x]
-    #     start_index = x * commit_per_thread
-    #     sub_repo_path = repo_path + str(x)
-    #     sub_host_path = host_path + str(x)
-    #     copy(repo_path, sub_repo_path)
-    #     host_address, pid = spawn_server_thread(port, sub_repo_path, sub_host_path, repo_name)
-    #     phantom_process_list.append(spawn_phantom_process(host_address, sub_repo_path, sub_chunk, start_index, repo_name, pid))
+    # spawn server threads
+    for x in range(numThreads):
+        port = 4000 + x
+        sub_chunk = chunked_commit_list[x]
+        start_index = x * commit_per_thread
+        sub_repo_path = repo_path + str(x)
+        sub_host_path = host_path + str(x)
+        copy(repo_path, sub_repo_path)
+        host_address, pid = spawn_server_thread(port, sub_repo_path, sub_host_path, repo_name)
+        phantom_process_list.append(spawn_phantom_process(host_address, sub_repo_path, sub_chunk, start_index, repo_name, pid))
 
-    # for t in phantom_process_list:
-    #     t.join()
+    for t in phantom_process_list:
+        t.join()
 
     generator.exportToTimelapse(screen_path, repo_name+'.mp4')
 
@@ -159,7 +160,7 @@ def phantom(host_address, repo_path, commit_list, index, repo_name, pid):
 
 if __name__ == '__main__':
 
-    fetch('https://github.com/markprokoudine/mchacks')
+    fetch('https://github.com/erjjones/erjjones.github.com')
 
 
 
