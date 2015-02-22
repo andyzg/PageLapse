@@ -13,15 +13,22 @@ function createCommit(commit) {
   var url = $("<a href='" + commit.url + "'><span class='commit-url'>See on Github</span></a>");
   var li = $("<li></li>");
   $(li).append(message);
+  $(li).append($("<br />"));
   $(li).append(hash);
+  $(li).append($("<br />"));
   $(li).append(url);
+
+  $(li).click(function() {
+    var img = $("<img src='" + commit.img + "' />");
+    $("div.column div.container").html(img);
+  });
   return li;
 }
 
 function initializeDashboard() {
   var socket = io.connect('http://' + document.domain + ':' + location.port + '/test');
 
-  socket.on('my response', function(msg) {
+  socket.on('commit', function(msg) {
     var screenHeight = $(window).height();
     console.log("Receiving a message");
     console.log(msg);
@@ -58,6 +65,7 @@ function changeScreen() {
     $("div.ul-container").css({
       height: (screenHeight - 50) + "px",
     });
+    updateHistory();
   });
 }
 

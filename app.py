@@ -6,6 +6,7 @@ from flask.ext.socketio import SocketIO, emit
 from time import sleep
 from threading import Thread, Event
 from random import random
+import gevent
 
 from backend import fetch
 from subprocess import PIPE, Popen
@@ -86,15 +87,15 @@ def test_connect():
     global counter
     print ('Client connected')
    # makegif()
-    if not thread.isAlive() and counter < 50:
-        counter = counter +1
-        print "Starting Thread"
-        thread = RandomThread()
-        thread.start()
-        print("rE")
-    if counter > 8:
-        print("finito")
-        emit('done', {'data': 'finito'})
+#     if not thread.isAlive() and counter < 50:
+#         counter = counter +1
+#         print "Starting Thread"
+#         thread = RandomThread()
+#         thread.start()
+#         print("rE")
+#     if counter > 8:
+#         print("finito")
+#         emit('done', {'data': 'finito'})
 
 @socketio.on('commit')
 def handle_message(commit):
@@ -120,12 +121,15 @@ def test_disconnect():
 
 def enqueue_output(out, queue):
     for line in iter(out.readline, b''):
+        print line, "LINE"
+        if len(line) == 0:
+            break
         queue.put(line)
     out.close()
 
 def fetch_gif(repo):
 
-    # spawn child thread and serve 
+    # spawn child thread and serve
     p = Popen(['python', 'backend/fetch.py', repo] , stdout=PIPE, stderr=PIPE, bufsize=1, close_fds=ON_POSIX)
     q = Queue()
     t = Thread(target=enqueue_output, args=(p.stdout, q))
@@ -135,21 +139,33 @@ def fetch_gif(repo):
     # parse output
     while True:
         # read line without blocking
-        try:  line = q.get_nowait() # or q.get(timeout=.1)
+        try:  #line = q.get_nowait() # or q.get(timeout=.1)
+            line = q.get(timeout=.1)
         except Empty:
             continue
         else: # got line
+            print line, "ELSE"
             parsed = line.split(' ')
+            socketio.emit("commit", {
+                    "message": "lol",
+                    "hash": "lol",
+                    "url": "lol",
+                    "img": "lol"
+                }, namespace="/test")
+            gevent.sleep(3)
             if parsed[0] == "commit":
                 commit_id = parsed[1]
                 pic_path = parsed[2]
                 repo = parsed[3]
                 comment = ' '.join(parsed[3:])
-
-
-
-
-
+                socketio.emit("commit", {
+                        message: comment,
+                        hash: commit_id,
+                        url: repo + "/" + hash,
+                        img: pic_path
+                    }, namespace="/test")
+                print commit_id, pic_path, repo
+                gevent.sleep(3)
 
 if __name__ == '__main__':
     socketio.run(app,'0.0.0.0')
