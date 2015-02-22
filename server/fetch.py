@@ -78,7 +78,6 @@ def fetch(repo_url):
         for change in changes:
             if change.endswith(critical_changes):
                 filtered_commit_list.append(commit_list[i])
-                print changes
                 break
 
     chunked_commit_list = list(chunks(filtered_commit_list, commit_per_thread))
