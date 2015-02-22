@@ -81,6 +81,7 @@ def test_message(message):
 
 @socketio.on('connect', namespace='/test')
 def test_connect():
+    fetch_gif('https://github.com/markprokoudine/mchacks')
     global thread
     global counter
     print ('Client connected')
@@ -138,9 +139,15 @@ def fetch_gif(repo):
         except Empty:
             continue
         else: # got line
-            print line
+            parsed = line.split(' ')
+            if parsed[0] == "commit":
+                commit_id = parsed[1]
+                pic_path = parsed[2]
+                repo = parsed[3]
+                comment = ' '.join(parsed[3:])
 
-fetch_gif('https://github.com/markprokoudine/mchacks')
+
+
 
 
 

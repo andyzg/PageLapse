@@ -17,7 +17,7 @@ ON_POSIX = 'posix' in sys.builtin_module_names
 
 tmp_dir = 'backend/tmp/'
 host_dir = 'backend/tmp_host/'
-screen_dir = 'assets/screenshots/'
+screen_dir = 'static/screenshots/'
 commit_per_thread = 20
 
 def enqueue_output(out, queue):
@@ -153,7 +153,7 @@ def phantom(host_address, repo_path, commit_list, index, repo_name, pid, repo_ur
         to_print += " " + commit_list[0].message
         print to_print
         git.checkout(commit_list.pop(0))
-        os.system("phantomjs phantom_screen.js " + host_address + " " + screen_dir + '/' + repo_name + '/' + str(index).zfill(3) + '.jpg')
+        os.system("phantomjs backend/phantom_screen.js " + host_address + " " + screen_dir + '/' + repo_name + '/' + str(index).zfill(3) + '.jpg')
         index += 1
 
     driver.quit()
