@@ -126,3 +126,4 @@ env/
 screenshots/
 ghostdriver.log
 _site
+*.mp4
