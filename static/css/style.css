@@ -5754,8 +5754,9 @@ body {
         height: 1248px; } }
     body div.hero div.footer {
       background-color: rgba(188, 43, 42, 0.5);
-      top: 392px;
+      height: 1000px;
       position: absolute;
+      top: 392px;
       width: 100%; }
       body div.hero div.footer div.how {
         color: #eee;
