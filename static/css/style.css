@@ -137,6 +137,10 @@ body {
       body div.footer div.start div.text {
         background-color: #bc2b2a;
         border-radius: 3px;
+        color: #eee;
+        cursor: pointer;
+        font-weight: 300;
+        font-size: 18px;
         height: 18px;
         padding: 8px; }
 
