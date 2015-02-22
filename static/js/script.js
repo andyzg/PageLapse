@@ -19,7 +19,7 @@ function createCommit(commit) {
   $(li).append(url);
 
   $(li).click(function() {
-    var img = $("<img src='" + commit.img + "' />");
+    var img = $("<img src='/static/screenshots/" + commit.img + "' />");
     $("div.column div.container").html(img);
   });
   return li;

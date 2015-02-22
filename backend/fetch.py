@@ -115,7 +115,7 @@ def spawn_server_thread(port, repo_path, host_path, repo_name):
     t.daemon = True # thread dies with the program
     t.start()
 
-    host_address = 'http://localhost:' + str(port)
+    host_address = 'http://localhost:' + str(port) + "/index.html"
 
     # wait until server starts
     while True:
@@ -124,6 +124,7 @@ def spawn_server_thread(port, repo_path, host_path, repo_name):
         except Empty:
             continue
         else: # got line
+            print line
             if "Server running" in line:
                 print "Server running " + repo_name + " " + str(p.pid) + " on " + host_address
                 return host_address, p.pid

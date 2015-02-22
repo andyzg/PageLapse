@@ -140,28 +140,20 @@ def fetch_gif(repo):
         except Empty:
             continue
         else: # got line
-            print line, "ELSE"
             parsed = line.split(' ')
-            socketio.emit("commit", {
-                    "message": "lol",
-                    "hash": "lol",
-                    "url": "lol",
-                    "img": "lol"
-                }, namespace="/test")
-            gevent.sleep(3)
             if parsed[0] == "commit":
                 commit_id = parsed[1]
                 pic_path = parsed[2]
                 repo = parsed[3]
                 comment = ' '.join(parsed[3:])
                 socketio.emit("commit", {
-                        message: comment,
-                        hash: commit_id,
-                        url: repo + "/" + hash,
-                        img: pic_path
+                        "message": comment,
+                        "hash": commit_id,
+                        "url": repo + "/" + commit_id,
+                        "img": pic_path
                     }, namespace="/test")
                 print commit_id, pic_path, repo
-                gevent.sleep(3)
+                gevent.sleep(2)
 
 if __name__ == '__main__':
     socketio.run(app,'0.0.0.0')
