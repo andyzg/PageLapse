@@ -1,8 +1,7 @@
 import glob
-import Image
 import os
 from moviepy.editor import *
-
+from Pil import Image
 
 
 
