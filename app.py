@@ -19,10 +19,8 @@ def get_root():
 
 @app.route('/query')
 def get_gif():
-    url = request.args.get('url')
-    history = [1, 2, 3, 4, 5];
-    return jsonify(url=url, commitHistory=history)
-    # return Response(status=300)
+    request.args.get('url')
+    return Response(status=200)
 
 
 
