@@ -22,6 +22,8 @@ def padImage(targetDirectory):
 #@returns: full path to the output file
 def exportToTimelapse(targetDirectory, output):
 
+	padImage(targetDirectory)
+
 	file_list=glob.glob(targetDirectory + '/*.png')
 	file_list.sort()
 
@@ -31,4 +33,5 @@ def exportToTimelapse(targetDirectory, output):
 	#clip.write_gif("export.gif")
 
 	return os.path.dirname(output)
+
 
