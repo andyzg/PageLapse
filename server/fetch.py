@@ -149,9 +149,8 @@ def phantom(host_address, repo_path, commit_list, index, repo_name, pid):
     while commit_list != []:
         print 'printing ' + str(commit_list[0])
         git.checkout(commit_list.pop(0))
-        # visit the site and screenshot
-        # driver.get(host_address)
-        # driver.save_screenshot(screen_dir + '/' + repo_name + '/' + str(index) + '.png')
+        print commit.message
+        print commit.author
         os.system("phantomjs phantom_screen.js " + host_address + " " + screen_dir + '/' + repo_name + '/' + str(index).zfill(3) + '.png')
         index += 1
 
