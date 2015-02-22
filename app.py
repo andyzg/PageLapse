@@ -26,7 +26,7 @@ def get_root():
 
 @app.route('/query')
 def get_gif():
-    request.args.get('url')
+    url = request.args.get('url')
     return Response(status=200)
 
 #======Fan's socket routes======
