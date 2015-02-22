@@ -148,6 +148,10 @@ body {
       div.text {
         background-color: $main-color;
         border-radius: 3px;
+        color: #eee;
+        cursor: pointer;
+        font-weight: 300;
+        font-size: 18px;
         height: 18px;
         padding: 8px;
       }
