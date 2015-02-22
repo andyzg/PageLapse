@@ -16,15 +16,14 @@ def padImage(targetDirectory):
 			background.paste(top,(0,0))
 			background.save(FNAME)
 			FILE.close()
-	
 
-#makes a timelapse from the files within the provided directory 
+
+#makes a timelapse from the files within the provided directory
 #@targetDirectory: absloute path of the the directory
 #@returns: full path to the output file
 def exportToTimelapse(targetDirectory, output):
 
-	#padImage(targetDirectory)
-	
+	padImage(targetDirectory)
 
 	file_list=glob.glob(targetDirectory + '/*.png')
 	file_list.sort()

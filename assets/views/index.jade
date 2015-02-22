@@ -5,12 +5,9 @@ html
     link(href='http://fonts.googleapis.com/css?family=Open+Sans:400,300', rel='stylesheet', type='text/css')
     link(rel='stylesheet', href='/static/css/style.css')
     link(rel="shortcut icon", href="/static/img/icon.ico")
-    script(src="https://cdn.socket.io/socket.io-1.3.4.js")
     script(src="/static/js/lib.js")
     script(src="/static/js/script.js")
-    script(src="/static/js/fan.js")
-    |<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.16/socket.io.min.js"></script>
-    |<link rel="stylesheet" href="../static/css/stylefan.css" type="text/css" />
+    script(type="text/javascript", src="//cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.16/socket.io.min.js")
   body
     div.hero
       div.header
@@ -20,7 +17,9 @@ html
           div.description(data-250="opacity: 0", data-500="opacity: 1")
             | Visualize a time lapse of your Github web page #[span.highlight evolving]
           div.description.smaller(data-750="opacity: 0", data-1000="opacity: 1")
-            | Made with #[img.heart(src="static/img/heart.png")] at McHacks #[img.mchacks(src="static/img/mchacks_logo.png")]
+            | Made with #[img.heart(src="static/img/heart.png")] at McHacks
+            br
+            | #[img.mchacks(src="static/img/mchacks_logo.png")]
       div.footer(data-1250="opacity: 0" data-1500="opacity: 1")
         div.container
           div.how(data-1750="opacity: 0" data-2000="opacity: 1")
@@ -41,4 +40,57 @@ html
         data-3000="opacity: 1")
           div.text
             | START
-    div.test
+    div.dashboard
+      div.row.row-offcanvas.row-offcanvas-left
+        div.col-xs-3.col-sm-2.sidebar-offcanvas#sidebar(role="navigation")
+          div.header
+            span.dashboard-title
+              | Commit History
+          div.ul-container
+            ul
+              li
+                span.commit-message
+                  | Initial commit
+                br
+                span.commit-hash
+                  | 123123123123123123
+                br
+                a(href="https://github.com/andyzg/andyzg.github.io/commit/72571b429cc6595ce3ad7951bc5a99b0e6962b51")
+                  span.commit-url
+                    | See on Github
+
+              li
+                span.commit-message
+                  | Initial commit
+                br
+                span.commit-hash
+                  | 123123123123123123
+                br
+                a(href="https://github.com/andyzg/andyzg.github.io/commit/72571b429cc6595ce3ad7951bc5a99b0e6962b51")
+                  span.commit-url
+                    | See on Github
+
+              li
+                span.commit-message
+                  | Initial commit
+                br
+                span.commit-hash
+                  | 123123123123123123
+                br
+                a(href="https://github.com/andyzg/andyzg.github.io/commit/72571b429cc6595ce3ad7951bc5a99b0e6962b51")
+                  span.commit-url
+                    | See on Github
+
+              li
+                span.commit-message
+                  | Initial commit
+                br
+                span.commit-hash
+                  | 123123123123123123
+                br
+                a(href="https://github.com/andyzg/andyzg.github.io/commit/72571b429cc6595ce3ad7951bc5a99b0e6962b51")
+                  span.commit-url
+                    | See on Github
+        div.column.col-xs-9.col-sm-10
+          div.container
+            | LOLOLOOLOL

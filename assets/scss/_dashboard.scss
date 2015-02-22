@@ -1,0 +1,45 @@
+$main-color: rgba(188, 43, 42, 1);
+
+div.row.row-offcanvas {
+  height: 100%;
+  div#sidebar {
+    div.header {
+      background-color: $main-color;
+      height: 50px;
+      padding: 8px;
+      text-align: center;
+      span.dashboard-title {
+        color: #EEE;
+        font-weight: 400;
+        font-size: 24px;
+      }
+    }
+
+    div.ul-container {
+      overflow-y: scroll;
+      ul {
+        li {
+          font-size: 12px;
+          list-style-type: none;
+          padding: 10px;
+          width: 100%;
+          span.commit-message {
+            font-weight: 400;
+          }
+          span.commit-hash {
+            font-weight: 300;
+          }
+          a,
+          a:active,
+          a:hover,
+          a:link,
+          a:visited {
+            span.commit-url {
+              font-weight: 300;
+            }
+          }
+        }
+      }
+    }
+  }
+}

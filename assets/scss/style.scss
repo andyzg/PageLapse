@@ -1,4 +1,7 @@
 @import 'reset';
+@import 'dashboard';
+@import 'bootstrap';
+@import 'sidebar';
 
 $font-stack: 'Open Sans', sans-serif;
 $main-color: rgba(188, 43, 42, 1);
@@ -157,14 +160,14 @@ body {
           color: #eee;
           font-weight: 300;
           font-size: 18px;
-          height: 18px;
-          padding: 8px;
+          height: 34px;
+          padding: 6px;
         }
       }
     }
   }
 
-  div.test {
+  div.dashboard {
     background-color: $second-color;
     height: 100%;
     position: fixed;

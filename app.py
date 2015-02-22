@@ -49,7 +49,7 @@ class RandomThread(Thread):
                 #if counter == 8:
                 #       emit('done', {'data': 'finito'})
                 #       break
-                if (counter == 8):
+                if (counter == 20):
                         socketio.emit('done', {'data': 'Connected'},namespace='/test')
                         counter = 0
                         break
@@ -57,14 +57,15 @@ class RandomThread(Thread):
                 print number
                 print counter
                 counter = counter +1
-                socketio.emit('my response', {'data': number}, namespace='/test')
+                socketio.emit('my response', {
+                        'data': number,
+                        'message': 'Commit message!',
+                        'hash': number,
+                        'url': 'http://andyzg.github.io',
+                    }, namespace='/test')
                 sleep(self.delay)
     def run(self):
-    	self.randomNumberGenerator()
-
-@app.route('/page_lapse')
-def index():
-	return render_template('mainapp.html')
+        self.randomNumberGenerator()
 
 @socketio.on('my event', namespace='/test')
 def test_message(message):
@@ -76,19 +77,20 @@ def test_message(message):
 
 @socketio.on('connect', namespace='/test')
 def test_connect():
-        global thread
-        global counter
-        print ('Client connected')
-       # makegif()
-        if not thread.isAlive() and counter < 8:
-                counter = counter +1
-                print "Starting Thread"
-                thread = RandomThread()
-                thread.start()
-                print("rE")
-        if counter > 8:
-        	print("finito")
-                emit('done', {'data': 'finito'})
+    global thread
+    global counter
+    print ('Client connected')
+   # makegif()
+    if not thread.isAlive() and counter < 50:
+        counter = counter +1
+        print "Starting Thread"
+        thread = RandomThread()
+        thread.start()
+        print("rE")
+    if counter > 8:
+        print("finito")
+        emit('done', {'data': 'finito'})
+
     # emit('my response', {'data': 'Connected'},)
     # makegif()
     # print "connect"
