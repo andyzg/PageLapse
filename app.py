@@ -14,6 +14,7 @@ from threading  import Thread
 import sys
 from Queue import Queue, Empty
 ON_POSIX = 'posix' in sys.builtin_module_names
+URL = 'https://github.com/markprokoudine/mchacks'
 
 app = Flask(__name__, static_folder='static', template_folder='assets/views')
 app.jinja_env.add_extension('pyjade.ext.jinja.PyJadeExtension')
@@ -26,7 +27,8 @@ def get_root():
 
 @app.route('/query')
 def get_gif():
-    url = request.args.get('url')
+    global URL
+    URL = request.args.get('url')
     return Response(status=200)
 
 #======Fan's socket routes======
@@ -82,7 +84,7 @@ def test_message(message):
 
 @socketio.on('connect', namespace='/test')
 def test_connect():
-    fetch_gif('https://github.com/markprokoudine/mchacks')
+    fetch_gif(URL)
     global thread
     global counter
     print ('Client connected')

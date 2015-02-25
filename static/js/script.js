@@ -37,7 +37,7 @@ function initializeDashboard() {
     console.log(msg);
 
     // $('div.ul-container ul').append("<li class=\"task\">" + msg.data + "</li>");
-    $('div.ul-container ul').append(createCommit(msg));
+    $('div.ul-container ul').prepend(createCommit(msg));
 
     $("body").css({
       height: screenHeight + "px",
